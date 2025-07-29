@@ -416,7 +416,9 @@ download_button_container.download_button(
 st.markdown("------")
 st.markdown("<h2 id='bsm-visualization'>BSM Visualization</h2>", unsafe_allow_html=True)
 
-st.info("This 3D plot shows how the theoretical option price varies with time to maturity and strike/spot price.")
+st.info('''This 3D plot shows how the theoretical option price varies with time to maturity and strike/spot price. 
+        Adjust the values of the risk-free rate, volatilty and spot/strike price using the sidebar on the left.
+        ''')
 
 option_type_surface_col, price_type_surface_col = st.columns([1,1], gap="large")
 
@@ -494,7 +496,9 @@ st.plotly_chart(fig, use_container_width=True)
 st.markdown("------")
 st.markdown("<h2 id='implied-volatility-calculator'>Implied Volatility Calculator</h2>", unsafe_allow_html=True)
 
-st.info('''Calculated implied-volatility for a given option price.
+st.info('''Calculated implied-volatility for a given option price. 
+        
+        Adjust the input variable values using the sidebar on the left.
         ''')
 
 variable_values_iv = {
