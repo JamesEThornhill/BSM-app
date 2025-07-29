@@ -1,7 +1,5 @@
 import numpy as np
 
-import numpy as np
-
 #This is for the payoff of a single option
 def compute_option_payoff(strike_price, option_price, option_type, position_type, stock_prices):
     
