@@ -62,25 +62,30 @@ r = r_pc/100
 BSM_output = BSM(T,K,S,r,sigma)
 C, P = BSM_output.option_prices()
 
-#----------------------------------------------------------------------------------------
-#Intro
-
-st.title("Introduction: Black-Scholes Model")
-st.info('''This app provides an interactive way to explore the Black-Scholes model - a tool used for pricing stock options. 
-        
-        Options are financial contracts that give buyers the right (or option) to buy (call option) or sell (put option) an asset at a fixed price before a set date.
-        The Black-Scholes formula estimates the fair value of (European style) call and put options based on variables like the underlying asset price, strike price, 
-        time to expiry, interest rates and volatility. The model can help traders and investors make better decisions by allowing them to price and hedge options in a 
-        consistent way.
-        
-        Below, this app lets you calculate options prices and visualise how they change with different inputs, helping grasp the model's assumptions, behaviour 
-        and value in options trading.
-        ''')
 
 #----------------------------------------------------------------------------------------
 #Layout of page
 
 st.title("Black-Scholes Model: pricing and visualizer tool")
+
+
+#Introduction
+st.markdown("---")
+st.markdown("Introduction: Black-Scholes Model")
+st.info('''
+This app provides an interactive way to explore the Black-Scholes model - a tool used for pricing stock options. 
+        
+Options are financial contracts that give buyers the right (or option) to buy (call option) or sell (put option) an asset at a fixed price before a set date.
+The Black-Scholes formula estimates the fair value of (European style) call and put options based on variables like the underlying asset price, strike price, 
+time to expiry, interest rates and volatility. The model can help traders and investors make better decisions by allowing them to price and hedge options in a 
+consistent way.
+        
+Below, this app lets you calculate options prices and visualise how they change with different inputs, helping grasp the model's assumptions, behaviour 
+and value in options trading.
+''')
+
+#----------------------------------------------------------------------------------------
+#Calculator
 
 st.markdown("---")
 st.markdown("<h2 id='pricing-calculator'>Options pricing calculator</h2>", unsafe_allow_html=True)
@@ -158,9 +163,7 @@ Increasing the time to maturity, T, increases the prices of both call and put op
 
         ''')
 #----------------------------------------------------------------------------------------------------
-
-
-# Your existing Streamlit inputs and calculations
+# Option payoff
 st.markdown("---")
 st.markdown("<h2 id='option-payoff-visualizer'>Option Payoff Visualizer</h2>", unsafe_allow_html=True)
 st.info('''
@@ -224,10 +227,8 @@ for i in range(num):
 
 total_payoff = np.sum(individual_payoffs, axis=0)
 
-# Plotting with Plotly
 title_payoff = "Option Payoff Plot" if num == 1 else "Combined Options Payoff Plot"
 
-# Create the title text
 if num == 1:
     title_text = f"{title_payoff}<br>{position_types[0]} a {strike_prices[0]:.0f} {option_types[0]} at {option_prices[0]:.1f}"
 elif num == 2:
@@ -237,7 +238,6 @@ elif num == 2:
                   )
 
 
-# Initialize Plotly figure
 fig = go.Figure()
 
 # Add individual payoff lines
@@ -252,13 +252,12 @@ for i, payoff in enumerate(individual_payoffs):
         hovertemplate='Stock Price: %{x:.2f}<br>Payoff: %{y:.2f}<extra></extra>'
     ))
 
-# Add strike price vertical lines
 for strike in strike_prices:
     fig.add_vline(x=strike, line=dict(color="black", width=1, dash="dash"), annotation_text=f"K={strike:.0f}")
 
 # Add a dummy trace for the strike price legend
 fig.add_trace(go.Scatter(
-    x=[None],  # No actual data points
+    x=[None],
     y=[None],
     mode='lines',
     line=dict(color="black", dash="dash", width=1),
@@ -311,7 +310,6 @@ if x_crossings:  # Only add the trace if there are break-even points
         showlegend=True
     ))
 
-# Update layout
 fig.update_layout(
     title=dict(text=title_text, x=0.5, xanchor='center', font=dict(size=18)),
     xaxis_title="Stock Price at Expiry",
@@ -329,7 +327,6 @@ fig.update_layout(
     height=800
 )
 
-# Display the plot in Streamlit
 st.plotly_chart(fig, use_container_width=True)
 
 #-----------------------------------------------------------------------------------------------------
@@ -352,7 +349,6 @@ Terminal condition, when T = 0:
 - Put Price = max(K - S, 0)
 ''')
 
-#Create radio buttons
 option_type_heatmap_col, price_type_heatmap_col = st.columns([1,1], gap="large")
 
 with option_type_heatmap_col: 
@@ -361,7 +357,6 @@ with option_type_heatmap_col:
 with price_type_heatmap_col:
     price_type_heatmap = st.radio("**Stock Price (x-axis of heatmap):**", ['Strike Price', 'Spot Price'], horizontal=True)
 
-# Sliders and number inputs
 sigma_range_heatmap_col, stock_range_heatmap_col = st.columns([1,1], gap="large")
 
 with sigma_range_heatmap_col:
@@ -431,9 +426,10 @@ download_button_container.download_button(
 st.markdown("------")
 st.markdown("<h2 id='bsm-visualization'>BSM Visualization</h2>", unsafe_allow_html=True)
 
-st.info('''This 3D plot shows how the theoretical option price varies with time to maturity and strike/spot price. 
-        Adjust the values of the risk-free rate, volatilty and spot/strike price using the sidebar on the left.
-        ''')
+st.info('''
+This 3D plot shows how the theoretical option price varies with time to maturity and strike/spot price. 
+Adjust the values of the risk-free rate, volatilty and spot/strike price using the sidebar on the left.
+''')
 
 option_type_surface_col, price_type_surface_col = st.columns([1,1], gap="large")
 
