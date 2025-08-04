@@ -32,7 +32,7 @@ default = {
 with st.sidebar:
     st.title("Contents:")
     st.markdown("""
-    -[Introduction](#introduction)
+    - [Introduction](#introduction)
     - [Options Pricing Calculator](#options-pricing-calculator)
     - [Option Payoff Visualizer](#option-payoff-visualizer)
     - [Heatmap of Option Prices](#heatmap-of-option-prices)
@@ -69,10 +69,9 @@ C, P = BSM_output.option_prices()
 
 st.title("Black-Scholes Model: pricing and visualizer tool")
 
-
 #Introduction
 st.markdown("---")
-st.markdown("<h2 id='introduction'>Introduction: Black-Scholes Model</h2>", unsafe_allow_html=True)
+st.markdown("<h2 id='introduction'>Introduction</h2>", unsafe_allow_html=True)
 st.info('''
 This app provides an interactive way to explore the Black-Scholes model - a tool used for pricing stock options. 
         
