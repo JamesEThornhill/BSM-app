@@ -507,10 +507,9 @@ st.plotly_chart(fig, use_container_width=True)
 st.markdown("------")
 st.markdown("<h2 id='implied-volatility-calculator'>Implied Volatility Calculator</h2>", unsafe_allow_html=True)
 
-st.info('''Calculated implied-volatility for a given option price. 
-        
-        Adjust the input variable values using the sidebar on the left.
-        ''')
+st.info('''
+Calculated implied-volatility for a given option price. Adjust the input variable values using the sidebar on the left.
+''')
 
 variable_values_iv = {
     "Variable": ["Spot Price", "Strike Price", "Time to Maturity (years)", "Risk Free Interest Rate"],
