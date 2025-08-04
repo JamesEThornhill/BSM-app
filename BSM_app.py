@@ -508,7 +508,12 @@ st.markdown("------")
 st.markdown("<h2 id='implied-volatility-calculator'>Implied Volatility Calculator</h2>", unsafe_allow_html=True)
 
 st.info('''
-Calculated implied-volatility for a given option price. Adjust the input variable values using the sidebar on the left.
+Calculated implied volatility for a given option price. Adjust the input variable values using the sidebar on the left.
+        
+Implied volatility (IV) reflects the market’s expectations of how much the price of the underlying asset will fluctuate over the option's life. 
+It is a key input in option pricing models and is derived from the market price of the option itself. 
+Higher IV generally indicates greater expected price movement and results in more expensive option premiums, 
+making it an important measure of market sentiment and risk.
 ''')
 
 variable_values_iv = {
