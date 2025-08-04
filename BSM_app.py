@@ -63,6 +63,21 @@ BSM_output = BSM(T,K,S,r,sigma)
 C, P = BSM_output.option_prices()
 
 #----------------------------------------------------------------------------------------
+#Intro
+
+st.title("Introduction: Black-Scholes Model")
+st.info('''This app provides an interactive way to explore the Black-Scholes model - a tool used for pricing stock options. 
+        
+        Options are financial contracts that give buyers the right (or option) to buy (call option) or sell (put option) an asset at a fixed price before a set date.
+        The Black-Scholes formula estimates the fair value of (European style) call and put options based on variables like the underlying asset price, strike price, 
+        time to expiry, interest rates and volatility. The model can help traders and investors make better decisions by allowing them to price and hedge options in a 
+        consistent way.
+        
+        Below, this app lets you calculate options prices and visualise how they change with different inputs, helping grasp the model's assumptions, behaviour 
+        and value in options trading.
+        ''')
+
+#----------------------------------------------------------------------------------------
 #Layout of page
 
 st.title("Black-Scholes Model: pricing and visualizer tool")
@@ -73,7 +88,7 @@ st.info('''
 Calculating the fair value for option contracts using Black-Scholes model. Use the sidebar on the left to adjust the variable values.
 
 Model assumptions:
-- The option is European and can only be exercised at expiration
+- The option is European - meaning it can only be exercised at expiration
 - The returns of the underlying asset are normally distributed
 - The risk-free interest rate and the volatility of the underlying asset are known and remain constant
 - Markets are random (market movements cannot be predicted)
